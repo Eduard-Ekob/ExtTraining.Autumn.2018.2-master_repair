@@ -1,7 +1,9 @@
-﻿namespace No8.Solution
+﻿using System.CodeDom;
+
+namespace No8.Solution
 {
-    //public class EpsonPrinter : PrinterSpecs
-    //{
+    public class Epson : PrinterBase
+    {
         
-    //}
+    }
 }

@@ -8,7 +8,11 @@ namespace No8.Solution.Console
 {
     class Program
     {
-        private static void Add()
+        private static void ReadFile()
+        {
+
+        }
+        public static void Add()
         {
             System.Console.WriteLine("Enter printer name");
             string name = System.Console.ReadLine();
@@ -20,21 +24,18 @@ namespace No8.Solution.Console
             pm.AddPrinter(printerSpecs);
             System.Console.WriteLine("Printer {0} {1} added", printerSpecs.Name, printerSpecs.Model);
 
-            foreach (var pr in pm)
-            {
-                System.Console.WriteLine();
-            }
+            
         }
 
 
         static void Main(string[] args)
         {
+            
             System.Console.WriteLine("Select your choice:");
 
             System.Console.WriteLine("1:AddPrinter new printer");
             System.Console.WriteLine("2:Print on Canon");
             System.Console.WriteLine("3:Print on Epson");
-
             System.Console.WriteLine();
             System.Console.WriteLine("Choose menu point");
             string point = System.Console.ReadLine();
@@ -44,9 +45,6 @@ namespace No8.Solution.Console
                 case "2": break;
             }
             
-
-
-
             System.Console.ReadLine();
         }
     }

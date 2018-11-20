@@ -1,34 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
 
 namespace No8.Solution
 {
-    public class PrinterManager : PrinterBase, IEnumerable<PrinterBase>
+    public class PrinterManager  /*IEnumerable<Printer>*/
     {
-        public List<PrinterBase> printers;
+        private Dictionary<int, Printer> printers;
+        private int numberOfPrinter;
 
         public PrinterManager()
         {
-            printers = new List<PrinterBase>();
+            printers = new Dictionary<int, Printer>();
         }
 
-        
 
         public void AddPrinter(PrinterSpecs printerSpecs)
         {
             Printer printer = new Printer(printerSpecs);
-            printers.Add(printer);
+            printers.Add(numberOfPrinter, printer);            
+            numberOfPrinter++;
         }
 
-        public IEnumerator GetEnumerator()
+        public void Print(int numberOfPrinter)
         {
-            return this.printers.GetEnumerator();
+            var currentPrinter = printers[numberOfPrinter];
+            currentPrinter.Print();
+            
         }
 
-        IEnumerator<PrinterBase> IEnumerable<PrinterBase>.GetEnumerator()
-        {
-            return printers.GetEnumerator();
-        }
+        //public IEnumerator GetEnumerator()
+        //{
+        //    return printers.GetEnumerator();
+        //}
+
+        //IEnumerator<Printer> IEnumerable<Printer>.GetEnumerator()
+        //{
+        //    return printers.GetEnumerator();
+        //}
         
 
     }
