@@ -6,12 +6,24 @@ using System.Threading.Tasks;
 
 namespace No8.Solution
 {
+    /// <summary>
+    /// Create printer
+    /// </summary>
     public class Printer : PrinterBase
     {
-        public PrinterSpecs printerSpecs;
-        public Printer(PrinterSpecs printerSpecs)
+        public override string Name { get; set; }
+        public override string Model { get; set; }
+
+        /// <summary>
+        /// Constructor for create Printer
+        /// </summary>
+        /// <param name="name">Printer name</param>
+        /// <param name="model">Printer model</param>
+        public Printer(string name, string model)
         {
-            this.printerSpecs = printerSpecs;
+            Name = name;
+            Model = model;
         }
+        
     }
 }
