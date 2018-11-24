@@ -16,16 +16,7 @@ namespace No8.Solution
         /// For print document
         /// </summary>
         virtual public void Print(string inputText)
-        {
-
-            //var saveWind = new SaveFileDialog();
-            //saveWind.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
-            //saveWind.ShowDialog();
-            //using (StreamWriter sWriter = new StreamWriter(saveWind.FileName, false, System.Text.Encoding.Default))
-            //{
-            //    sWriter.WriteLine(inputText);
-            //}
-            
+        {            
             Console.WriteLine(inputText);
         }
 
