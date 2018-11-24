@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILogging.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="PrinterBase.cs" />
     <Compile Include="PrinterManager.cs" />

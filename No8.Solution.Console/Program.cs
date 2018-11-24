@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
 
 namespace No8.Solution.Console
 {
@@ -21,20 +23,23 @@ namespace No8.Solution.Console
         [STAThreadAttribute]
         static void Main(string[] args)
         {
+            const int defaultmenustartingpoint = 2;
+            var pm = new PrinterManager(defaultmenustartingpoint);
+            var logger = new Logging();
+            pm.LoggingEvent += logger.Log;
+
             // Add default printer
-            var pm = new PrinterManager(2);
             pm.AddPrinter("Canon", "FX15");
             pm.AddPrinter("Epson", "E-1181");
 
             // Menu logic
             while (true)
             {
-                int PointsInMenu = 0;
+                const int defaultmenupoints = 2;
+                int PointsInMenu = defaultmenupoints;
                 System.Console.WriteLine("Select your choice:");
-                PointsInMenu++;
                 System.Console.WriteLine();
                 System.Console.WriteLine("1:Add new printer");
-                PointsInMenu++;
                 foreach (KeyValuePair<int, Printer> kv in pm.Printers)
                 {
                     System.Console.WriteLine("{0}:Print on {1}", kv.Key, kv.Value.ToString());
@@ -54,7 +59,15 @@ namespace No8.Solution.Console
                 }
                 else if (pm.Printers.ContainsKey(printerNumber))
                 {
-                    pm.Print(printerNumber);
+                    string inputText = string.Empty;
+                    var openWind = new OpenFileDialog();
+                    openWind.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+                    openWind.ShowDialog();
+                    using (StreamReader sReader = new StreamReader(openWind.FileName, System.Text.Encoding.Default))
+                    {
+                        inputText = sReader.ReadToEnd();
+                        pm.Print(printerNumber, inputText);
+                    }
                 }
                 else if (point == PointsInMenu.ToString())
                 {
